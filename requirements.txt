@@ -1,5 +1,6 @@
 # Add your dependencies here
 pandas
+numpy
 scikit-learn
 matplotlib
 seaborn
