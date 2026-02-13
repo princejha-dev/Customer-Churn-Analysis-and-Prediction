@@ -1,6 +1,6 @@
 # Customer Churn Analysis and Prediction
 
-A machine learning project to predict customer churn for telecommunications companies. Uses logistic regression to identify at-risk customers and enable targeted retention strategies.
+This repository contains a Jupyter Notebook (`Churn.ipynb`) that experiments with several machine learning algorithms to predict customer churn using the Telco Customer Churn dataset.
 
 ## Problem Statement
 
@@ -9,107 +9,61 @@ Customer churn directly impacts revenue and business growth. This project helps 
 - Improved customer lifetime value through targeted interventions
 - Data-driven insights into factors influencing customer loyalty
 
-## Solution
 
-- **Exploratory Data Analysis**: Analyze 7,043 customer records across 21 attributes
-- **Data Preprocessing**: Clean data, encode categorical variables, scale features
-- **Predictive Model**: Logistic regression model trained on historical churn patterns
-- **Interactive Interface**: Streamlit web app for real-time churn predictions
-- **Key Features**: Demographics, services, billing, and tenure information
-
-## Project Structure
-
-``
-Customer-Churn-Analysis-and-Prediction/
-│
-├── README.md
-├── requirements.txt
-├── app.py # Streamlit prediction interface
-├── model.pkl # Trained model
-│
-├── data/
-│ └── raw/
-│ └── Telco Customer Churn Dataset.csv
-│
-├── notebooks/
-│ └── Churn_Prediction.ipynb # Full analysis & model training
-│
-├── models/ # Model artifacts
-├── tests/ # Unit tests
-└── docs/ # Documentation
+## Overview
+- Goal: Compare multiple models (Logistic Regression, KNN, SVC, Naive Bayes, Decision Tree, Random Forest) to identify which generalizes best for churn prediction.
+- Notebook: `Churn.ipynb` (run in Jupyter or VS Code).
+- Data: `data/Telco Customer Churn Dataset.csv`.
 ``
 
-## Installation
+## Models Evaluated
+- Logistic Regression
+- K-Nearest Neighbors (KNN)
+- Support Vector Classifier (SVC)
+- Naive Bayes (GaussianNB)
+- Decision Tree (criterion='entropy', max_depth=5)
+- Random Forest (n_estimators=100, max_depth=5)
+``
 
-``bash
-# Clone repository
-git clone https://github.com/princejha-dev/Customer-Churn-Analysis-and-Prediction.git
-cd Customer-Churn-Analysis-and-Prediction
+## Reported Model Accuracies (from notebook summary)
 
-# Create virtual environment (optional but recommended)
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # macOS/Linux
+| Model                | Training Accuracy | Testing Accuracy |
+|---------------------:|------------------:|-----------------:|
+| Random Forest        | 0.8389            | 0.7978           |
+| Logistic Regression  | 0.8176            | 0.7989           |
+| Decision Tree        | 0.8233            | 0.7678           |
+| KNN                  | 0.8048            | 0.7703           |
+| SVC                  | 0.8226            | 0.7893           |
+| Naive Bayes          | 0.7686            | 0.7549           |
+``
 
-# Install dependencies
+## Evaluation Metrics
+The notebook prints for each model:
+- Accuracy
+- Classification report (precision, recall, f1-score)
+- Confusion matrix
+
+## How to run
+1. Create and activate a Python environment (recommended Python 3.8+).
+2. Install dependencies:
+
+```bash
 pip install -r requirements.txt
-``
+```
 
-## Usage
+3. Open `Churn.ipynb` in Jupyter or VS Code and run all cells.
 
-**Jupyter Notebook** (Full analysis & model development):
-``bash
-jupyter notebook notebooks/Churn_Prediction.ipynb
-``
+## Findings & Next Steps
+- Logistic Regression and Random Forest are the most promising models: Logistic Regression shows good generalization, Random Forest achieves highest accuracy but with some overfitting.
+- Suggested improvements:
+  - Hyperparameter tuning (GridSearchCV / RandomizedSearchCV).
+  - Cross-validation for more robust performance estimates.
+  - Feature engineering and selection to improve generalization.
+  - Try ensemble boosting methods (e.g., XGBoost, LightGBM).
 
-**Web Application** (Interactive predictions):
-``bash
-streamlit run app.py
-``
-Open browser to `http://localhost:8501`
-
-## Model Details
-
-- **Algorithm**: Logistic Regression
-- **Target**: Customer Churn (Yes/No)
-- **Features**: 20 customer attributes (demographics, services, billing)
-- **Train/Test Split**: 80/20
-- **Key Predictors**: Contract type, tenure, internet service type, monthly charges
-
-## Technologies
-
-- Python 3.x
-- Pandas, NumPy
-- Scikit-learn (ML algorithms)
-- Matplotlib, Seaborn (visualization)
-- Streamlit (web interface)
-- Jupyter Notebook
-
-## Dependencies
-
-``
-pandas
-numpy
-scikit-learn
-matplotlib
-seaborn
-streamlit
-``
-
-See `requirements.txt` for complete list.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit changes (`git commit -m 'Add feature'`)
-4. Push branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-
-## License
-
-MIT License - see LICENSE file for details
+## Files
+- `Churn.ipynb` — analysis and model training.
+- `data/Telco Customer Churn Dataset.csv` — dataset used.
+- `requirements.txt` — Python dependencies.
 
 ---
-
-**Status**: Active | **Last Updated**: January 2026
